@@ -1,0 +1,170 @@
+To build a social engineering tool for educational or ethical purposes, follow these step-by-step instructions. We’ll create a simple phishing simulation tool that includes:
+
+A Flask server to host a mock phishing page.
+A Tkinter GUI to start and stop the Flask server.
+Prerequisites
+Kali Linux with Python installed.
+Python 3 and virtual environment.
+1. Set Up Your Environment
+Install Python and Virtual Environment:
+
+Open a terminal and ensure you have Python and the virtual environment package:
+
+
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+Create a Project Directory:
+
+
+mkdir ~/social_engineering_tool
+cd ~/social_engineering_tool
+Create and Activate a Virtual Environment:
+
+
+python3 -m venv venv
+source venv/bin/activate
+2. Set Up the Flask Server
+Install Required Packages:
+
+With the virtual environment activated, install Flask:
+
+
+pip install flask
+Create the Flask Server Script:
+
+2.  Create the Flask Server Script:
+
+In the ~/social_engineering_tool directory,
+create a file named server.py:
+then edit your code in this file and save it 
+
+
+Run the Flask Server:
+
+
+python server.py
+You should see output indicating the server is running, and you can access it at http://localhost:5000 in a web browser.
+
+
+To build a social engineering tool for educational or ethical purposes, follow these step-by-step instructions. We’ll create a simple phishing simulation tool that includes:
+
+A Flask server to host a mock phishing page.
+A Tkinter GUI to start and stop the Flask server.
+Prerequisites
+Kali Linux with Python installed.
+Python 3 and virtual environment.
+1. Set Up Your Environment
+Install Python and Virtual Environment:
+
+Open a terminal and ensure you have Python and the virtual environment package:
+
+bash
+Copy code
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+Create a Project Directory:
+
+bash
+Copy code
+mkdir ~/social_engineering_tool
+cd ~/social_engineering_tool
+Create and Activate a Virtual Environment:
+
+bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+2. Set Up the Flask Server
+Install Required Packages:
+
+With the virtual environment activated, install Flask:
+
+bash
+Copy code
+pip install flask
+Create the Flask Server Script:
+
+In the ~/social_engineering_tool directory, create a file named server.py:
+
+python
+Copy code
+# server.py
+from flask import Flask, request, render_template_string, redirect, url_for
+
+app = Flask(__name__)
+
+# HTML template for phishing page
+phishing_page = '''
+<!doctype html>
+<html>
+<head><title>Login Page</title></head>
+<body>
+    <h2>Login to Your Account</h2>
+    <form action="/submit" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+'''
+
+@app.route('/')
+def index():
+    return render_template_string(phishing_page)
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    # Print captured credentials to the console
+    print(f"Captured credentials: Username: {username}, Password: {password}")
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
+Run the Flask Server:
+
+bash
+Copy code
+python server.py
+You should see output indicating the server is running, and you can access it at http://localhost:5000 in a web browser.
+
+3. Create the Tkinter GUI
+Install Tkinter (if not already installed):
+
+Tkinter usually comes pre-installed with Python, but if not:
+
+
+sudo apt install python3-tk
+Create the Tkinter GUI Script:
+then enter your GUI code 
+
+Run the Tkinter GUI:
+python gui.py 
+This will open a GUI window with buttons to start and stop the Flask server.
+
+
+
+4. Testing the Tool
+Start the Server:
+
+Open the Tkinter GUI (gui.py).
+Click the "Start Phishing Server" button. This will start the Flask server and you should see a confirmation message.
+Access the Phishing Page:
+
+Open a web browser and navigate to http://localhost:5000.
+You should see the mock login page.
+Submit Test Data:
+
+Enter a username and password on the mock phishing page and submit.
+Check the terminal where you ran server.py to see the captured credentials.
+Stop the Server:
+
+In the Tkinter GUI, click the "Stop Phishing Server" button to stop the Flask server.
+Summary
+Create the Flask server to serve a mock phishing page.
+Set up the Tkinter GUI to start and stop the Flask server.
+Test the tool by accessing the mock phishing page and submitting data.                 
